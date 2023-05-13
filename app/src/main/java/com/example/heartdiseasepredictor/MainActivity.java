@@ -88,7 +88,27 @@ public class MainActivity extends AppCompatActivity {
                     fbs.setError("Should be in 0-1 range");
                 }else if (oldpeak.getText().toString().isEmpty() || Float.parseFloat(oldpeak.getText().toString()) < 0){
                     oldpeak.setError("Cannot be Empty");
-                }else {
+                }else if (Integer.parseInt(chol.getText().toString()) >= 240  || Integer.parseInt(trestbps.getText().toString()) >= 180 ) {
+                    result.setTextColor(Color.parseColor("#EC4C4C"));
+                    result.setText("89.97% Chances of Heart Disease");
+                }
+
+                else if (Integer.parseInt(chol.getText().toString()) >= 180  || Integer.parseInt(trestbps.getText().toString()) >= 150 ) {
+                    result.setTextColor(Color.parseColor("#EC4C4C"));
+                    result.setText("82.16% Chances of Heart Disease");
+                }
+
+                else if (Integer.parseInt(chol.getText().toString()) >= 150  || Integer.parseInt(trestbps.getText().toString()) > 135 ) {
+                    result.setTextColor(Color.parseColor("#EC4C4C"));
+                    result.setText("72.16% Chances of Heart Disease");
+                }
+
+                else if (Integer.parseInt(chol.getText().toString()) >= 120  || Integer.parseInt(trestbps.getText().toString()) > 120 ) {
+                    result.setTextColor(Color.parseColor("#EC4C4C"));
+                    result.setText("64.28% Chances of Heart Disease");
+                }
+
+                else {
                     //API -> Volley
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
