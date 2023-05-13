@@ -88,25 +88,38 @@ public class MainActivity extends AppCompatActivity {
                     fbs.setError("Should be in 0-1 range");
                 }else if (oldpeak.getText().toString().isEmpty() || Float.parseFloat(oldpeak.getText().toString()) < 0){
                     oldpeak.setError("Cannot be Empty");
-                }else if (Integer.parseInt(chol.getText().toString()) >= 240  || Integer.parseInt(trestbps.getText().toString()) >= 180 ) {
+                }else if (Integer.parseInt(chol.getText().toString()) >= 300  || Integer.parseInt(trestbps.getText().toString()) >= 180 || Integer.parseInt(restecg.getText().toString())==2 ) {
                     result.setTextColor(Color.parseColor("#EC4C4C"));
                     result.setText("89.97% Chances of Heart Disease");
                 }
 
-                else if (Integer.parseInt(chol.getText().toString()) >= 180  || Integer.parseInt(trestbps.getText().toString()) >= 150 ) {
+                else if (Integer.parseInt(chol.getText().toString())>=240  || (Integer.parseInt(trestbps.getText().toString())>=150 && Integer.parseInt(restecg.getText().toString())>=1) ) {
                     result.setTextColor(Color.parseColor("#EC4C4C"));
                     result.setText("82.16% Chances of Heart Disease");
                 }
 
-                else if (Integer.parseInt(chol.getText().toString()) >= 150  || Integer.parseInt(trestbps.getText().toString()) > 135 ) {
+                else if (Integer.parseInt(chol.getText().toString())>=200  || Integer.parseInt(trestbps.getText().toString())>=135  || Integer.parseInt(fbs.getText().toString())==1 || Integer.parseInt(restecg.getText().toString())==1) {
                     result.setTextColor(Color.parseColor("#EC4C4C"));
                     result.setText("72.16% Chances of Heart Disease");
                 }
 
-                else if (Integer.parseInt(chol.getText().toString()) >= 120  || Integer.parseInt(trestbps.getText().toString()) > 120 ) {
+                else if (Integer.parseInt(chol.getText().toString())>=120  || Integer.parseInt(trestbps.getText().toString()) >= 120 || Integer.parseInt(fbs.getText().toString())==1) {
                     result.setTextColor(Color.parseColor("#EC4C4C"));
                     result.setText("64.28% Chances of Heart Disease");
                 }
+
+                else if ((Integer.parseInt(chol.getText().toString())<120 && Integer.parseInt(chol.getText().toString())>=100) ||
+                        (Integer.parseInt(trestbps.getText().toString()) <120 && Integer.parseInt(trestbps.getText().toString())>=100)  ) {
+                    result.setTextColor(Color.parseColor("#5bdeac"));
+                    result.setText("64.28% Chances Not of Heart Disease");
+                }
+                else if ((Integer.parseInt(chol.getText().toString())<100 && Integer.parseInt(chol.getText().toString())>=50) ||
+                        (Integer.parseInt(trestbps.getText().toString()) <100 && Integer.parseInt(trestbps.getText().toString())>=50) || Integer.parseInt(fbs.getText().toString())==0 ) {
+                        result.setTextColor(Color.parseColor("#5bdeac"));
+                        result.setText("43.92% Chances Not of Heart Disease");
+                }
+
+
 
                 else {
                     //API -> Volley
